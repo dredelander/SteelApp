@@ -1,0 +1,20 @@
+{% extends "base.html" %} {% block title %}Visuals SS{% endblock %} {% block content
+%}
+<!doctype html>
+<title align='center'>SS Flats Trend</title>
+<section>
+  <br>
+  <h2 align='center'>Stainless Steel Plate and Sheet 12 Month Variance  </h2>
+  <div class="" align='center'>
+
+  <img src="data:image/png;base64, {{ plot_url }}">
+    </div>
+</section>
+
+<br>
+
+<div class="d-grid gap-2">
+  <a href="{{url_for('views.ssteel')}}"class="btn btn-warning"  type="button">Back to Stainless Steel Last 2 Months Review</a>
+
+</div>
+{% endblock %}

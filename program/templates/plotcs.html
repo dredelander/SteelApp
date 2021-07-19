@@ -1,0 +1,20 @@
+{% extends "base.html" %} {% block title %}Visuals CS{% endblock %} {% block content
+%}
+<!doctype html>
+<title align='center'>Carbon Steel Flats Trend</title>
+<section>
+  <br>
+  <h2 align='center'>Carbon Steel Plate and Sheet 12 Month Variance  </h2>
+  <div class="" align='center'>
+
+  <img src="data:image/png;base64, {{ cs_plot_url }}">
+    </div>
+</section>
+
+<br>
+
+<div class="d-grid gap-2">
+  <a href="{{url_for('views.cs')}}"class="btn btn-warning"  type="button">Back to Carbon Steel Last 2 Months Review</a>
+
+</div>
+{% endblock %}

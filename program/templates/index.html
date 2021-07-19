@@ -1,0 +1,80 @@
+
+{% extends "base.html" %} {% block title %}Home{% endblock %} {% block content
+%}
+<br>
+
+<h4 align="center">Raw Material Cost by Grade</h4>
+<br>
+
+<div class="d-grid gap-2 col-6 mx-auto" align="center">
+  <a href="{{url_for('views.ssteel')}}">
+  <button class="btn btn-warning" type="button">Stainless Steel Pricing</button>
+  </a>
+  <br>
+  <a href="{{url_for('views.cs')}}">
+  <button class="btn btn-warning" type="button" href="#" >Carbon Steel Pricing</button>
+  </a>
+</div>
+
+<br>
+<br>
+  <br>
+<div align = "center" class="table table table-hover">
+  <table class="table table-striped">
+    <thead>
+    <h5 class="table-danger">Expense Summary by G/L Account <span class="badge bg-secondary">ERL Marine & Rail</span> </h5>
+
+    </thead>
+
+    <tbody class="table table-striped">
+
+
+
+      {% for ex_erl_cmb in tables %}
+        <tr class="table table-striped" >
+          {{ ex_erl_cmb|safe }}
+        </tr>
+      {% endfor %}
+
+    </tbody>
+
+  </table>
+  </div>
+  <br>
+  <br>
+
+  <div align = "center" class="table table table-hover">
+    <table class="table table-striped">
+      <thead>
+      <h5 class="table-danger">Expense Summary by G/L Account <span class="badge bg-secondary">Law Valve of Texas</span> </h5>
+
+      </thead>
+
+      <tbody class="table table-striped">
+
+
+
+        {% for ex_law_cmb in table2 %}
+          <tr class="table table-striped" >
+            {{ ex_law_cmb|safe }}
+          </tr>
+        {% endfor %}
+
+      </tbody>
+
+    </table>
+    </div>
+    <br>
+<div class="card" align='center'>
+  <div class="card-header text-white bg-danger mb-3">
+  <b> Note:</b>
+  </div>
+  <div class="card-body">
+    <blockquote class="blockquote mb-0">
+      <p>The application's data was last updated on <b>{{update_date}}</b> Please request for an update to the Admin if needed.</p>
+      <footer class="blockquote-footer"> <cite title="Source Title">Andres Vivanco</cite></footer>
+    </blockquote>
+  </div>
+</div>
+
+{% endblock %}

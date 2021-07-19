@@ -1,0 +1,58 @@
+{% extends "base.html" %} {% block title %}Home{% endblock %} {% block content
+%}
+<h1 align='center'>Carbon Steel Price Fluctuation</h1>
+
+<br>
+<br>
+<div class="">
+
+
+<div align='left'class="container">
+<h3> <b>Sheet and Plate</b></h3>
+</div>
+
+  <br>
+<div class="row row-cols-2 row-cols-md-3 g-4">
+  <div class="col">
+  <div class="card text-dark bg-light mb-3" style="max-width: 18rem;">
+  <div align='center'class="card-header">Average Price per Pound in the last 30 days</div>
+  <div class="card-body">
+    <h5 class="card-title"><b>${{rec_plt_cs_ppp}}</b></h5>
+    <p class="card-text"> {{tt_plt_lbs_rec_cs}} lbs. purchased</p>
+  </div>
+</div>
+</div>
+<div class="col">
+  <div class="card text-dark bg-light mb-3" style="max-width: 18rem;">
+  <div align='center'class="card-header">Average  Price per Pound 1 month ago:</div>
+  <div class="card-body">
+    <h5 class="card-title"><b>${{pre_plt_cs_ppp}}</b></h5>
+    <p class="card-text">{{tt_plt_lbs_pre_cs}}lbs. purchased.</p>
+  </div>
+  </div>
+  </div>
+  <div class="col">
+    <div class="card text-dark bg-light mb-3" style="max-width: 18rem;">
+    <div align='center'class="card-header text-white bg-secondary mb-3"><b>Percentage change within the last 2 months:</b></div>
+    <div class="card-body">
+      {% if plt_per_cost_chg > 0 %}
+      <p class="card-body"><b>{{plt_per_cost_chg}}%</b> increase in price/lb.</<p>
+      {% else %}
+      <p class="card-body"><b>{{plt_per_cost_chg}}%</b> decrease in price/lb.</<p>
+      {% endif %}
+      {% if plt_per_ttlbs_chg > 0 %}
+      <p class="card-body"><b>{{plt_per_ttlbs_chg}}%</b> increase in lbs. purchased</p>
+      {% else %}
+      <p class="card-body"><b>{{plt_per_ttlbs_chg}}%</b> decrease in lbs. purchased</p>
+      {% endif %}
+    </div>
+    </div>
+    </div>
+</div>
+<div class="d-grid gap-2">
+  <a href="{{url_for('graphs.cs_plot')}}"class="btn btn-warning"  type="button">View a 12 month historical graph</a>
+
+</div>
+
+
+{% endblock %}

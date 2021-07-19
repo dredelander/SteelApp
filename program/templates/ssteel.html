@@ -1,0 +1,161 @@
+
+{% extends "base.html" %} {% block title %}Home{% endblock %} {% block content
+%}
+<br>
+<h1 align='center'>Stainless Steel Price Fluctuation</h1>
+<br>
+<br>
+<div class="">
+
+
+<div align='left'class="container">
+<h3> <b>Sheet and Plate</b></h3>
+</div>
+
+  <br>
+<div class="row row-cols-2 row-cols-md-3 g-4">
+  <div class="col">
+  <div class="card text-dark bg-light mb-3" style="max-width: 18rem;">
+  <div align='center' class="card-header">Average Price per Pound in the last 30 days</div>
+  <div class="card-body">
+    <h5 class="card-title"><b>${{rec_ppp_flats}}</b></h5>
+    <p class="card-text"> {{tt_lbs_rec}} lbs. purchased</p>
+  </div>
+</div>
+</div>
+<div class="col">
+  <div class="card text-dark bg-light mb-3" style="max-width: 18rem;">
+  <div align='center' class="card-header">Average  Price per Pound 1 month ago:</div>
+  <div class="card-body">
+    <h5 class="card-title"><b>${{pre_ppp_flats}}</b></h5>
+    <p class="card-text">{{tt_lbs_pre}}lbs. purchased.</p>
+  </div>
+  </div>
+  </div>
+  <div class="col">
+    <div class="card text-dark bg-light mb-3" style="max-width: 18rem;">
+    <div align='center'class="card-header text-white bg-secondary mb-3"><b>Percentage change within the last 2 months:</b></div>
+    <div class="card-body">
+      {% if price_per_chg > 0 %}
+      <p class="card-body"><b>{{price_per_chg}}%</b> increase in price/lb.</<p>
+      {% else %}
+      <p class="card-body"><b>{{price_per_chg}}%</b> decrease in price/lb.</<p>
+      {% endif %}
+      {% if pounds_per_chg > 0 %}
+      <p class="card-body"><b>{{pounds_per_chg}}%</b> increase in lbs. purchased</p>
+      {% else %}
+      <p class="card-body"><b>{{pounds_per_chg}}%</b> decrease in lbs. purchased</p>
+      {% endif %}
+    </div>
+    </div>
+    </div>
+</div>
+<br>
+<div class="d-grid gap-2">
+  <a href="{{url_for('graphs.plot')}}"class="btn btn-warning"  type="button">View a 12 month historical graph</a>
+
+</div>
+<br>
+<div align='left'class="container">
+<h3><b>Round - Flatbar - Square - Hex Forms</b></h3>
+
+</div>
+
+  <br>
+  <br>
+<div class="row row-cols-2 row-cols-md-3 g-4">
+  <div class="col">
+  <div class="card text-dark bg-light mb-3" style="max-width: 18rem;">
+  <div align='center' class="card-header">Average Price per Pound in the last 30 days</div>
+  <div class="card-body">
+    <h5 class="card-title"><b>${{rec_round_ppp}}</b></h5>
+    <p class="card-text">{{tt_lbs_rec_rounds}} lbs. purchased</p>
+  </div>
+</div>
+</div>
+<div class="col">
+<div class="card text-dark bg-light mb-3" style="max-width: 18rem;">
+<div align='center' class="card-header">Average  Price per Pound 1 month ago</div>
+<div class="card-body">
+  <h5 class="card-title"><b>${{pre_round_ppp}}</b></h5>
+  <p class="card-text">{{tt_lbs_pre_rounds}} lbs. purchased</p>
+</div>
+</div>
+</div>
+<div class="col">
+  <div class="card text-dark bg-light mb-3" style="max-width: 18rem;">
+  <div align='center'class="card-header text-white bg-secondary mb-3"><b>Percentage change within the last 2 months:</b></div>
+  <div class="card-body">
+    {% if round_ppp_per_chg > 0 %}
+    <p class="card-body"><b>{{round_ppp_per_chg}}%</b> increase in price/lb.</<p>
+    {% else %}
+    <p class="card-body"><b>{{round_ppp_per_chg}}%</b> decrease in price/lb.</<p>
+    {% endif %}
+    {% if round_ttlbs_per_chg > 0 %}
+    <p class="card-body"><b>{{round_ttlbs_per_chg}}%</b> increase in lbs. purchased</p>
+    {% else %}
+    <p class="card-body"><b>{{round_ttlbs_per_chg}}%</b> decrease in lbs. purchased</p>
+    {% endif %}
+  </div>
+  </div>
+  </div>
+</div>
+<br>
+<div class="d-grid gap-2">
+  <a href="{{url_for('graphs.plot')}}"class="btn btn-warning"  type="button">View a 12 month historical graph</a>
+
+</div>
+
+<div align='left'class="container">
+<h3><b>Tube and Pipe</b></h3>
+</div>
+
+<br>
+<br>
+<div class="row row-cols-2 row-cols-md-3 g-4">
+<div class="col">
+<div class="card text-dark bg-light mb-3" style="max-width: 18rem;">
+<div align='center' class="card-header">Average Price per Feet in the last 30 days</div>
+<div class="card-body">
+  <h5 class="card-title"><b>${{tb_rec_pp_avgperft}}</b></h5>
+  <p class="card-text">{{tt_rec_tb_pp}} total feet purchased</p>
+</div>
+</div>
+</div>
+<div class="col">
+<div class="card text-dark bg-light mb-3" style="max-width: 18rem;">
+<div align='center' class="card-header">Average  Price per Pound 1 month ago</div>
+<div class="card-body">
+<h5 class="card-title"><b>${{tb_pre_pp_avgperft}}</b></h5>
+<p class="card-text">{{tt_pre_tb_pp}} total feet purchased</p>
+</div>
+</div>
+</div>
+<div class="col">
+<div class="card text-dark bg-light mb-3" style="max-width: 18rem;">
+  <div align='center'class="card-header text-white bg-secondary mb-3"><b>Percentage change within the last 2 months:</b></div>
+<div class="card-body">
+  {% if tb_cost_per_chg > 0 %}
+  <p class="card-body"><b>{{tb_cost_per_chg}}%</b> increase in price/ft.</<p>
+  {% else %}
+  <p class="card-body"><b>{{tb_cost_per_chg}}%</b> decrease in price/ft.</<p>
+  {% endif %}
+  {% if tb_ttft_per_chg > 0 %}
+  <p class="card-body"><b>{{tb_ttft_per_chg}}%</b> increase in feet purchased</p>
+  {% else %}
+  <p class="card-body"><b>{{tb_ttft_per_chg}}%</b> decrease in feet purchased</p>
+  {% endif %}
+</div>
+</div>
+</div>
+<br>
+</div>
+<div class="d-grid gap-2">
+  <a href="{{url_for('graphs.plot')}}"class="btn btn-warning"  type="button">View a 12 month historical graph</a>
+
+</div>
+<br>
+<br>
+
+
+{% endblock %}
