@@ -1,1 +1,1 @@
-web: gunicorn SteelApp.main:app
+web gunicorn main:app
