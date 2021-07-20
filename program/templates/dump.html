@@ -20,6 +20,26 @@
 </table>
   </div>
 
+
+  if request.method == 'POST':
+      file = request.files['pohistory']
+      file2= request.files['partmaster']
+      #file3= request.files['carbon']
+                  #fname = request.form.get('fname')
+      if file:
+          if not os.path.isdir('pohistory'):
+              os.mkdir('pohistory')
+          new_fn = file.filename.split('.')[-1]
+          filepath =   os.path.join('pohistory', 'costing' +'.'+ new_fn )
+          file.save(filepath)
+          flash('The file as been upploaded!', category = 'success' )
+      if file2:
+          if not os.path.isdir('partmaster'):
+              os.mkdir('partmaster')
+          new_fn = file2.filename.split('.')[-1]
+          filepath =   os.path.join('partmaster', 'master_raw-material_sku-info' +'.'+ new_fn )
+          file2.save(filepath)
+          flash('The file as been upploaded!', category = 'success' )
   #########Graphs section ########
 
   from io import BytesIO

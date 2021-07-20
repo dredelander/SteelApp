@@ -20,33 +20,37 @@ def home():
     return render_template('index.html', update_date = update_date, tables=[ex_erl_cmb.to_html(classes='data', header='true')],
                             table2=[ex_law_cmb.to_html(classes='data', header='true')]) #user=current_user)
 
+APP_ROOT = os.path.dirname(os.path.abspath(__file__))
+
 @views.route('/upload', methods= ['GET', 'POST'])
 #@login_required
 def upload():
+    target1 =  os.path.join(APP_ROOT, 'pohistory/')
+    target2 =  os.path.join(APP_ROOT, 'partmaster/')
     if request.method == 'POST':
         file = request.files['pohistory']
         file2= request.files['partmaster']
         #file3= request.files['carbon']
                     #fname = request.form.get('fname')
         if file:
-            if not os.path.isdir('pohistory'):
-                os.mkdir('pohistory')
+            if not os.path.isdir(target1):
+                os.mkdir(target1)
             new_fn = file.filename.split('.')[-1]
-            filepath =   os.path.join('pohistory', 'costing' +'.'+ new_fn )
+            filepath =   os.path.join(target1, 'costing' +'.'+ new_fn )
             file.save(filepath)
             flash('The file as been upploaded!', category = 'success' )
         if file2:
-            if not os.path.isdir('partmaster'):
-                os.mkdir('partmaster')
+            if not os.path.isdir(target2):
+                os.mkdir(target2)
             new_fn = file2.filename.split('.')[-1]
-            filepath =   os.path.join('partmaster', 'master_raw-material_sku-info' +'.'+ new_fn )
+            filepath =   os.path.join(target2, 'master_raw-material_sku-info' +'.'+ new_fn )
             file2.save(filepath)
             flash('The file as been upploaded!', category = 'success' )
 
     return render_template('uploads.html') #user=current_user)
 
 #### Reading the Po history excel and making df for time periods
-rawbase_1 = pd.read_csv('pohistory/costing.csv', index_col='Date', parse_dates=True,
+rawbase_1 = pd.read_csv('program/pohistory/costing.csv', index_col='Date', parse_dates=True,
                        usecols=['Date','Item','Document Number','Quantity','Amount','Location'], engine='python')
 rawbase_1 = rawbase_1.dropna()
 rawbase_1= rawbase_1.sort_index(ascending=False)
@@ -63,7 +67,7 @@ gp_previous30df = previous30df.groupby(['Item'], as_index=False).agg(f)
 gp_recent30df= recent30df.groupby(['Item'], as_index=False).agg(f)
 
 # reading the sku info file with wwights and other info for each part
-rawskuinfo = pd.read_csv('pohistory/master_raw-material_sku-info.csv', index_col=None, usecols=['Item', 'Pounds Per Unit', 'Grade', 'Form', 'Units'], engine='python')
+rawskuinfo = pd.read_csv('program/partmaster/master_raw-material_sku-info.csv', index_col=None, usecols=['Item', 'Pounds Per Unit', 'Grade', 'Form', 'Units'], engine='python')
 
 ## Code for plate and sheet
 shtpltinfo_1 = rawskuinfo[rawskuinfo['Form'].str.match('PLATE') | rawskuinfo['Form'].str.match('SHEET')]

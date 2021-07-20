@@ -51,14 +51,14 @@ def cs_plot():
     return render_template('plotcs.html', cs_plot_url=cs_plot_url)
 
 #### Reading the Po history excel and making df for time periods
-rawbase_1 = pd.read_csv('pohistory/costing.csv', index_col='Date', parse_dates=True,
+rawbase_1 = pd.read_csv('program/pohistory/costing.csv', index_col='Date', parse_dates=True,
                        usecols=['Date','Item','Document Number','Quantity','Amount','Location'], engine='python')
 rawbase_1 = rawbase_1.dropna()
 rawbase_1= rawbase_1.sort_index(ascending=False)
 
 # reading the sku info file with wwights and other info for each part STEINLESS FLATS
 
-rawskuinfo = pd.read_csv('pohistory/master_raw-material_sku-info.csv', index_col=None, usecols=['Item', 'Pounds Per Unit', 'Grade', 'Form', 'Units'], engine='python')
+rawskuinfo = pd.read_csv('program/partmaster/master_raw-material_sku-info.csv', index_col=None, usecols=['Item', 'Pounds Per Unit', 'Grade', 'Form', 'Units'], engine='python')
 shtpltinfo_1 = rawskuinfo[rawskuinfo['Form'].str.match('PLATE') | rawskuinfo['Form'].str.match('SHEET')]
 shtpltinfo_2 = shtpltinfo_1[shtpltinfo_1['Grade'].str.match('304') | shtpltinfo_1['Grade'].str.match('316') | shtpltinfo_1['Grade'].str.match('303')]
 curr_date = pd.to_datetime('today').date()
