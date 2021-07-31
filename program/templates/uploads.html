@@ -1,5 +1,9 @@
 {% extends "base.html" %} {% block title %}Home{% endblock %} {% block content
 %}
+<body>
+{% for mesg in get_flashed_messages() %}
+<h1>{{mesg}}</h1>
+{% endfor %}
 
 <form method="POST" enctype="multipart/form-data">
   <h3 align="center">Upload a CSV file:</h3>
@@ -34,4 +38,5 @@
   <button type="submit" class="btn btn-primary">Upload</button>
 
 </form>
+</body>
 {% endblock %}

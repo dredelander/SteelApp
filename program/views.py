@@ -39,6 +39,7 @@ def upload():
             filepath =   os.path.join(target1, 'costing' +'.'+ new_fn )
             file.save(filepath)
             flash('The file as been upploaded!', category = 'success' )
+            return redirect('uploads.html')
         if file2:
             if not os.path.isdir(target2):
                 os.mkdir(target2)
@@ -46,6 +47,7 @@ def upload():
             filepath =   os.path.join(target2, 'master_raw-material_sku-info' +'.'+ new_fn )
             file2.save(filepath)
             flash('The file as been upploaded!', category = 'success' )
+            return redirect('uploads.html')
 
     return render_template('uploads.html') #user=current_user)
 
